@@ -1,46 +1,30 @@
-var dog, hdog, db, foods, foodst;
+var dog, hdog, db;
 var db = firebase.database();
+var food;
 
-function preload()
-{
+function preload() {
   hdog = loadImage("./images/dogImg.png");
   dogimg = loadImage("./images/dogImg1.png");
 }
 
 function setup() {
-  createCanvas(500, 500);
-  dog = createSprite(250,250);
-  dog.addImage("eating",hdog);
+  createCanvas(600, 600);
+  dog = createSprite(300, 300);
+  dog.addImage("eating", dogimg);
+  dog.addImage("happy", hdog);
   dog.scale = 0.2;
+  fe = new fe();
+  food = new Food();
 }
 
-function draw() {  
+function draw() {
   background(72);
-  foods = foodst;
+  fe.display();
   textSize(20);
-  getfs();
-  fill(255,0,255);
-  text("Press Up Arrow to feed Hedwig.",100,100);
-  if (foodst != undefined) {
-    fill(255);
-    text("Food Left : " + foodst,180,150);
-  }
+  fill(255, 0, 255);
   imageMode(CENTER);
-  feed();
+  food.getfs();
+  food.display();
+  food.displaymilk();
   drawSprites();
-}
-
-function getfs() {
-  db.ref('/food').on("value",(data) => {
-    foodst = data.val();
-  });
-}
-
-function feed() {
-  foods = foods -1;
-  if (keyDown(UP_ARROW)) {
-    db.ref('/').update({
-      food : foods
-    });
-  }
 }
