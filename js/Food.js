@@ -4,7 +4,7 @@ class Food {
     this.lf;
     this.foods;
     this.time;
-    this.image = loadImage("../images/Milk.png");
+    this.image = loadImage("https://raymonstephanie.github.io/VP/images/Milk.png");
     this.log = [];
     this.timelog = [];
     this.x = 0;
