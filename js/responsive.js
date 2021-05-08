@@ -1,8 +1,7 @@
 class fe {
-
   constructor() {
-    this.feedbutton = createButton('Feed Hedwig');
-    this.addbutton = createButton('Add food');
+    this.feedbutton = createButton("Feed Hedwig");
+    this.addbutton = createButton("Add food");
   }
 
   display() {
@@ -13,6 +12,11 @@ class fe {
     });
     this.addbutton.mouseClicked(() => {
       food.addfs();
-    })
+    });
+  }
+
+  hide() {
+    this.feedbutton.hide();
+    this.addbutton.hide();
   }
 }

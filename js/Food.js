@@ -4,7 +4,9 @@ class Food {
     this.lf;
     this.foods;
     this.time;
-    this.image = loadImage("https://raymonstephanie.github.io/VP/images/Milk.png");
+    this.image = loadImage(
+      "https://raymonstephanie.github.io/VP/images/Milk.png"
+    );
     this.log = [];
     this.timelog = [];
     this.x = 0;
@@ -24,10 +26,10 @@ class Food {
   }
 
   getfs() {
-    db.ref('/food').on("value", (data) => {
+    db.ref("/food").on("value", (data) => {
       this.foodst = data.val();
     });
-    db.ref('/time').on("value", (data) => {
+    db.ref("/time").on("value", (data) => {
       this.time = data.val();
     });
     this.log.push(this.foodst);
@@ -41,9 +43,9 @@ class Food {
       var mn = minute();
       var sec = second();
       var date = hr + ":" + mn + ":" + sec;
-      db.ref('/').update({
+      db.ref("/").update({
         food: this.foods,
-        time: date
+        time: date,
       });
       dog.changeImage("happy");
     }
@@ -52,16 +54,16 @@ class Food {
   addfs() {
     if (this.foodst <= 19) {
       this.foods = this.foods + 1;
-      db.ref('/').update({
+      db.ref("/").update({
         food: this.foods,
       });
-      dog.changeImage("eating");
+      dog.changeImage("hungry");
     }
   }
 
   displaymilk() {
-    var x = 80,
-      y = 100;
+    var x = 80;
+    var y = 100;
     imageMode(CENTER);
     image(this.image, 720, 220, 70, 70);
     if (this.foodst != 0) {
@@ -74,5 +76,18 @@ class Food {
         x = x + 30;
       }
     }
+  }
+
+  bedroom() {
+    imageMode(CENTER);
+    image(bimage, 300, 300, width, height);
+  }
+  garden() {
+    imageMode(CENTER);
+    image(gimage, 300, 300, width, height);
+  }
+  washroom() {
+    imageMode(CENTER);
+    image(wimage, 300, 300, width, height);
   }
 }
